@@ -19,7 +19,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
     const session = await getSession({ req }); // Pega a sessão do usuário
 
-    const user = await fauna.query<User>(
+    const user = await fauna.query<User>( // Busca o usuário pelo email
       q.Get(
         q.Match(
           q.Index('user_by_email'),
@@ -27,9 +27,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         )
       )
     )
-    let customerId = user.data.stripe_customer_id;
+    let customerId = user.data.stripe_customer_id; // Pega o customerId
 
     if(!customerId) {
+      // Se o usuário não existir cria um novo
       const stripeCustomer = await stripe.customers.create({
         email: session.user.email
         //metadata

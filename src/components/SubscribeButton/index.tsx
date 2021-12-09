@@ -18,7 +18,7 @@ export function SubscribeButton({ priceId }: SubscribeButtonProps) {
       return;
     }
 
-    try {
+    try { // Pega o sessionId e redireciona o usuário para o checkout ao clicar no botão
       const response = await api.post('/subscribe');
 
       const { sessionId } = response.data;

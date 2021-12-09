@@ -1,4 +1,4 @@
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { FiX } from 'react-icons/fi';
 import { signIn, signOut, useSession } from 'next-auth/react';
 
@@ -18,6 +18,7 @@ export default function SignInButton() {
       <FiX color="#737380" className={styles.closeIcon} />
     </button>
   ) : (
+    <>
     <button
       type="button"
       className={styles.signInButton}
@@ -26,5 +27,14 @@ export default function SignInButton() {
       <FaGithub color="#eba417" />
       Sign In with Github
     </button>
+    {/* <button
+      type="button"
+      className={styles.signInButton}
+      onClick={() => signIn('google')}
+    >
+      <FaGoogle color="#eba417" />
+      Sign In with Google
+    </button> */}
+    </>
   )
 }
