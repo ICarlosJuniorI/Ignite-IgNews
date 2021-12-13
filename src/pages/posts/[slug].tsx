@@ -41,7 +41,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
   const session = await getSession({ req }); // Verifica se o usuário está logado
   const { slug } = params; // Pega o slug do post que será carregado
 
-  if(!session.activeSubscription) {
+  // Se não tiver uma assinatura ativa, retorna para a página home
+  if (!session.activeSubscription) {
     return {
       redirect: {
         destination: '/',
@@ -62,12 +63,12 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
       day: '2-digit',
       month: 'long',
       year: 'numeric',
-    })
+    }),
   };
 
   return {
     props: {
-      post
+      post,
     }
   }
 }

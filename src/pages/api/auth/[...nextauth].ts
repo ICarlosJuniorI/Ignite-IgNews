@@ -1,5 +1,4 @@
 import { query as q } from 'faunadb';
-
 import NextAuth from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 // import GoogleProvider from 'next-auth/providers/google';
@@ -60,8 +59,9 @@ export default NextAuth({
       const { email } = user;
 
       try {
+        // Se o usuário não existir ele cria um novo, caso exista retorna ele
         await fauna.query(
-          q.If(  // Se o usuário não existir ele cria um novo, caso exista retorna ele
+          q.If(
             q.Not(
               q.Exists(
                 q.Match(
