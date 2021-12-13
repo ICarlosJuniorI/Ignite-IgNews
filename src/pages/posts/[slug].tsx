@@ -42,7 +42,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
   const { slug } = params; // Pega o slug do post que será carregado
 
   // Se não tiver uma assinatura ativa, retorna para a página home
-  if (!session.activeSubscription) {
+  if (!session?.activeSubscription) {
     return {
       redirect: {
         destination: '/',
